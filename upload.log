@@ -1,0 +1,1343 @@
+﻿Processing esp32-c3-devkitm-1 (platform: espressif32; board: esp32-c3-devkitm-1; framework: arduino; monitor_speed: 115200; lib_deps: taligentx/dscKeybusInterface; build_flags: -D ARDUINO_USB_MODE=1, -D ARDUINO_USB_CDC_ON_BOOT=1)
+--------------------------------------------------------------------------------
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-c3-devkitm-1.html
+PLATFORM: Espressif 32 (7.0.1) > Espressif ESP32-C3-DevKitM-1
+HARDWARE: ESP32C3 160MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-arduinoespressif32 @ 3.20017.241212+sha.dcc1105b 
+ - tool-esptoolpy @ 2.41100.0 (4.11.0) 
+ - tool-mkfatfs @ 2.0.1 
+ - tool-mklittlefs @ 1.203.210628 (2.3) 
+ - tool-mkspiffs @ 2.230.0 (2.30) 
+ - toolchain-riscv32-esp @ 8.4.0+2021r2-patch5
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 34 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- dscKeybusInterface @ 3.0.0 (License: Unknown, Path: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras pruebas\.pio\libdeps\esp32-c3-devkitm-1\dscKeybusInterface)
+|-- Preferences @ 2.0.0 (License: Unknown, Path: C:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\libraries\Preferences)
+|-- WebServer @ 2.0.0 (License: Unknown, Path: C:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\libraries\WebServer)
+|   |-- WiFi @ 2.0.0 (License: Unknown, Path: C:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\libraries\WiFi)
+|   |-- FS @ 2.0.0 (License: Unknown, Path: C:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\libraries\FS)
+|-- WiFi @ 2.0.0 (License: Unknown, Path: C:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\libraries\WiFi)
+Building in release mode
+riscv32-esp-elf-g++ -o .pio\build\esp32-c3-devkitm-1\firmware.elf -nostartfiles -march=rv32imc --specs=nosys.specs -Wl,--cref -Wl,--gc-sections -fno-rtti -fno-lto -Wl,--wrap=esp_log_write -Wl,--wrap=esp_log_writev -Wl,--wrap=log_printf -Wl,--undefined=uxTopUsedPriority -T memory.ld -T sections.ld -T esp32c3.rom.ld -T esp32c3.rom.api.ld -T esp32c3.rom.libgcc.ld -T esp32c3.rom.newlib.ld -T esp32c3.rom.version.ld -T esp32c3.rom.newlib-time.ld -T esp32c3.rom.eco3.ld -T esp32c3.peripherals.ld -u _Z5setupv -u _Z4loopv -u esp_app_desc -u pthread_include_pthread_impl -u pthread_include_pthread_cond_var_impl -u pthread_include_pthread_local_storage_impl -u pthread_include_pthread_rwlock_impl -u include_esp_phy_override -u start_app -u __ubsan_include -u __assert_func -u vfs_include_syscalls_impl -u app_main -u newlib_include_heap_impl -u newlib_include_syscalls_impl -u newlib_include_pthread_impl -u newlib_include_assert_impl -u __cxa_guard_dummy -Wl,-Map="C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras pruebas\.pio\build\esp32-c3-devkitm-1\firmware.map" .pio\build\esp32-c3-devkitm-1\src\main.cpp.o -L.pio\build\esp32-c3-devkitm-1 -LC:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\tools\sdk\esp32c3\lib -LC:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\tools\sdk\esp32c3\ld -LC:\Users\Leonardo\.platformio\packages\framework-arduinoespressif32\tools\sdk\esp32c3\qio_qspi -Wl,--start-group .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a .pio\build\esp32-c3-devkitm-1\libaa5\libPreferences.a .pio\build\esp32-c3-devkitm-1\libf43\libWiFi.a .pio\build\esp32-c3-devkitm-1\lib465\libFS.a .pio\build\esp32-c3-devkitm-1\libaf7\libWebServer.a .pio\build\esp32-c3-devkitm-1\libFrameworkArduino.a -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lasio -lbt -lcbor -lunity -lcmock -lcoap -lnghttp -lesp-tls -lesp_adc_cal -lesp_hid -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lesp_https_server -lesp_lcd -lprotobuf-c -lprotocomm -lmdns -lesp_local_ctrl -lsdmmc -lesp_serial_slave_link -lesp_websocket_client -lexpat -lwear_levelling -lfatfs -lfreemodbus -ljsmn -ljson -llibsodium -lmqtt -lopenssl -lspiffs -lwifi_provisioning -lrmaker_common -lesp_diagnostics -lrtc_store -lesp_insights -ljson_parser -ljson_generator -lesp_schedule -lespressif__esp_secure_cert_mgr -lesp_rainmaker -lgpio_button -lqrcode -lws2812_led -lesp32-camera -lesp_littlefs -lespressif__esp-dsp -lfb_gfx -lasio -lcmock -lunity -lcoap -lesp_lcd -lesp_websocket_client -lexpat -lfreemodbus -ljsmn -llibsodium -lesp_adc_cal -lesp_hid -lfatfs -lwear_levelling -lopenssl -lspiffs -lesp_insights -lcbor -lesp_diagnostics -lrtc_store -lesp_rainmaker -lesp_local_ctrl -lesp_https_server -lwifi_provisioning -lprotocomm -lbt -lbtdm_app -lprotobuf-c -lmdns -ljson -ljson_parser -ljson_generator -lesp_schedule -lespressif__esp_secure_cert_mgr -lqrcode -lrmaker_common -lmqtt -lcat_face_detect -lhuman_face_detect -lcolor_detect -lmfn -ldl -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lesp_ringbuf -lefuse -lesp_ipc -ldriver -lesp_pm -lmbedtls -lapp_update -lbootloader_support -lspi_flash -lnvs_flash -lpthread -lesp_gdbstub -lespcoredump -lesp_phy -lesp_system -lesp_rom -lhal -lvfs -lesp_eth -ltcpip_adapter -lesp_netif -lesp_event -lwpa_supplicant -lesp_wifi -lconsole -llwip -llog -lheap -lsoc -lesp_hw_support -lriscv -lesp_common -lesp_timer -lfreertos -lnewlib -lcxx -lapp_trace -lnghttp -lesp-tls -ltcp_transport -lesp_http_client -lesp_http_server -lesp_https_ota -lsdmmc -lesp_serial_slave_link -lmbedtls_2 -lmbedcrypto -lmbedx509 -lcoexist -lcore -lespnow -lmesh -lnet80211 -lpp -lsmartconfig -lwapi -lphy -lbtbb -lesp_phy -lphy -lbtbb -lesp_phy -lphy -lbtbb -lc -lm -lnewlib -lstdc++ -lpthread -lgcc -lcxx -Wl,--end-group
+platformio.exe : c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../.
+./../../riscv32-esp-elf/bin/ld.exe: 
+.pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::dscDataInterrupt()':
+At line:2 char:1
++ & 'C:\Users\Leonardo\.platformio\penv\Scripts\platformio.exe' run -v  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (c:/users/leonar...taInterrupt()'::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:625: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:629: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:629: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:632: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:632: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:633: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:633: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:635: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:635: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:635: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:636: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:636: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:637: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:642: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:642: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:643: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:643: undefined reference to 
+`dscKeybusInterface::statusCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:643: undefined reference to 
+`dscKeybusInterface::statusCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:646: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:652: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:664: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:665: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:665: undefined reference to 
+`dscKeybusInterface::statusCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:647: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:658: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:659: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:659: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:668: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:696: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:696: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:676: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:679: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:679: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:680: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:680: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:680: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:681: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:682: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:682: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:690: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:690: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:691: undefined reference to 
+`dscKeybusInterface::moduleDataDetected'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:691: undefined reference to 
+`dscKeybusInterface::moduleDataDetected'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::dscKeybusInterface(unsigned char, unsigned char, unsigned char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:30: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:30: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:31: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:31: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:32: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:32: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:33: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:33: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:37: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:37: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:38: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:38: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::begin(Stream&)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:44: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:44: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:44: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:45: undefined reference to 
+`dscKeybusInterface::dscReadPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:45: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:45: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:46: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:46: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:67: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::stop()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:74: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:73: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:95: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:95: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:95: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:98: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:99: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:99: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:99: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:100: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:100: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:101: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:101: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:105: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::setWriteKey(char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:319: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:319: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:325: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:325: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:325: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:329: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:329: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeBit'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:377: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o):C:\Users\Leon
+ardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: more undefined references 
+to `dscKeybusInterface::writeKey' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::setWriteKey(char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:352: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:338: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:339: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:339: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:341: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:342: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o):C:\Users\Leon
+ardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:343: more undefined references 
+to `dscKeybusInterface::writeKey' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::setWriteKey(char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:350: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:350: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:350: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:351: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:354: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:357: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:368: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o):C:\Users\Leon
+ardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:359: more undefined references 
+to `dscKeybusInterface::writeKey' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::setWriteKey(char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:377: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:380: undefined reference to 
+`dscKeybusInterface::writeBit'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:380: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:409: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:411: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:386: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::writeKeys(char const*)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:398: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:398: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::dscClockInterrupt()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:478: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:485: undefined reference to 
+`dscKeybusInterface::dscClockPin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:485: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:486: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:486: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:486: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:492: undefined reference to 
+`dscKeybusInterface::clockHighTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:492: undefined reference to 
+`dscKeybusInterface::clockHighTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:492: undefined reference to 
+`dscKeybusInterface::clockHighTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:496: undefined reference to 
+`dscKeybusInterface::keybusTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:496: undefined reference to 
+`dscKeybusInterface::keybusTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:496: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:496: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:500: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:500: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:500: undefined reference to 
+`dscKeybusInterface::currentCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:516: undefined reference to 
+`dscKeybusInterface::currentCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:515: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:515: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:516: undefined reference to 
+`dscKeybusInterface::bufferOverflow'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:516: undefined reference to 
+`dscKeybusInterface::bufferOverflow'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:516: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:516: undefined reference to 
+`dscKeybusInterface::processModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:524: undefined reference to 
+`dscKeybusInterface::moduleDataDetected'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:524: undefined reference to 
+`dscKeybusInterface::moduleDataDetected'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:527: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:527: undefined reference to 
+`dscKeybusInterface::isrModuleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:527: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:527: undefined reference to 
+`dscKeybusInterface::moduleCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:528: undefined reference to 
+`dscKeybusInterface::moduleCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:528: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:529: undefined reference to 
+`dscKeybusInterface::moduleSubCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:529: undefined reference to 
+`dscKeybusInterface::moduleSubCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:529: undefined reference to 
+`dscKeybusInterface::moduleDataDetected'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:529: undefined reference to 
+`dscKeybusInterface::moduleDataCaptured'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:530: undefined reference to 
+`dscKeybusInterface::moduleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:531: undefined reference to 
+`dscKeybusInterface::moduleDataCaptured'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:532: undefined reference to 
+`dscKeybusInterface::moduleData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:532: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:532: undefined reference to 
+`dscKeybusInterface::moduleBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:533: undefined reference to 
+`dscKeybusInterface::moduleBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:533: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:533: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:534: undefined reference to 
+`dscKeybusInterface::moduleByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:534: undefined reference to 
+`dscKeybusInterface::moduleByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:538: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:542: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:542: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:543: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:544: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:544: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:546: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:546: undefined reference to 
+`dscKeybusInterface::virtualKeypad'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:550: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:550: undefined reference to 
+`dscKeybusInterface::statusCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:556: undefined reference to 
+`dscKeybusInterface::statusCmd'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:556: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:556: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:556: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:561: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:561: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:561: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:561: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::starKeyWait'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::starKeyWait'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::starKeyWait'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::writeByte'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:589: undefined reference to 
+`dscKeybusInterface::writeBit'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:592: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:592: undefined reference to 
+`dscKeybusInterface::writeBit'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:598: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:598: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:598: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:598: undefined reference to 
+`dscKeybusInterface::isrPanelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:599: undefined reference to 
+`dscKeybusInterface::writeBit'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:602: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:602: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:603: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:603: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:501: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:501: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:510: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:510: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:510: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:506: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:510: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:517: undefined reference to 
+`dscKeybusInterface::panelBuffer'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:517: undefined reference to 
+`dscKeybusInterface::isrPanelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:517: undefined reference to 
+`dscKeybusInterface::panelBuffer'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:518: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:518: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:518: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:518: undefined reference to 
+`dscKeybusInterface::panelBufferBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:518: undefined reference to 
+`dscKeybusInterface::panelBufferBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:519: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:519: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:519: undefined reference to 
+`dscKeybusInterface::isrPanelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:519: undefined reference to 
+`dscKeybusInterface::panelBufferByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:520: undefined reference to 
+`dscKeybusInterface::panelBufferByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:520: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:520: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:521: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:557: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:564: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:564: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:564: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:565: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:572: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:572: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:572: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:572: undefined reference to 
+`dscKeybusInterface::writeKey'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:573: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:573: undefined reference to 
+`dscKeybusInterface::dscWritePin'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:573: undefined reference to 
+`dscKeybusInterface::isrPanelBitTotal'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:576: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:576: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:582: undefined reference to 
+`dscKeybusInterface::writeAlarm'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:582: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::validCRC()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:306: undefined reference to 
+`dscKeybusInterface::panelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:442: undefined reference to 
+`dscKeybusInterface::panelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:445: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:445: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:447: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:447: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::loop()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:122: undefined reference to 
+`dscKeybusInterface::keybusTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:122: undefined reference to 
+`dscKeybusInterface::keybusTime'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:139: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:139: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:134: undefined reference to 
+`dscKeybusInterface::panelBuffer'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:225: undefined reference to 
+`dscKeybusInterface::panelBuffer'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelBufferBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelBufferBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:147: undefined reference to 
+`dscKeybusInterface::panelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:148: undefined reference to 
+`dscKeybusInterface::panelBitCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:148: undefined reference to 
+`dscKeybusInterface::panelBufferByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:148: undefined reference to 
+`dscKeybusInterface::panelBufferByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:148: undefined reference to 
+`dscKeybusInterface::panelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:149: undefined reference to 
+`dscKeybusInterface::panelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:150: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:159: undefined reference to 
+`dscKeybusInterface::panelBufferLength'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:165: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:172: undefined reference to 
+`dscKeybusInterface::panelByteCount'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:175: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:175: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:183: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:191: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:193: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:202: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:214: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o):C:\Users\Leon
+ardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:201: more undefined references 
+to `dscKeybusInterface::panelData' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::write(char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:215: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:215: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusInterface.cpp.o): in function 
+`dscKeybusInterface::write(char const*, bool)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:221: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusInterface.cpp:265: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::setTime(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, char 
+const*, unsigned char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:62: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o):C:\Users\Le
+onardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:62: more undefined references 
+to `dscKeybusInterface::writeKeyPending' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::setTime(unsigned int, unsigned char, unsigned char, unsigned char, unsigned char, char 
+const*, unsigned char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:100: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:100: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:105: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:105: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:106: undefined reference to 
+`dscKeybusInterface::writePartition'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::processPanel_0x16()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:114: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:382: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::processPanel_0x87()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:471: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:478: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::processPanel_0xE6_0x1A()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:496: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o):C:\Users\Le
+onardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:567: more undefined references 
+to `dscKeybusInterface::panelData' follow
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::processPanelStatus()':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:348: undefined reference to 
+`dscKeybusInterface::starKeyWait'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:348: undefined reference to 
+`dscKeybusInterface::starKeyWait'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:350: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:351: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:348: undefined reference to 
+`dscKeybusInterface::starKeyCheck'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:348: undefined reference to 
+`dscKeybusInterface::writeKeyPending'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o): in 
+function `dscKeybusInterface::processPanelStatus0(unsigned char, unsigned char)':
+C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:375: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:375: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:611: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:681: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: C:\Users\Leonardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:688: undefined reference to 
+`dscKeybusInterface::panelData'
+c:/users/leonardo/.platformio/packages/toolchain-riscv32-esp/bin/../lib/gcc/riscv32-esp-elf/8.4.0/../../../../riscv32-e
+sp-elf/bin/ld.exe: .pio\build\esp32-c3-devkitm-1\lib69a\libdscKeybusInterface.a(dscKeybusProcessData.cpp.o):C:\Users\Le
+onardo\Documents\PlatformIO\Projects\esp32 primeras 
+pruebas/.pio/libdeps/esp32-c3-devkitm-1/dscKeybusInterface/src/dscKeybusProcessData.cpp:688: more undefined references 
+to `dscKeybusInterface::panelData' follow
+collect2.exe: error: ld returned 1 exit status
+*** [.pio\build\esp32-c3-devkitm-1\firmware.elf] Error 1
+========================= [FAILED] Took 17.64 seconds =========================
