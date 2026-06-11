@@ -2,17 +2,29 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <Preferences.h>
+#include <esp_task_wdt.h>
 #include <dscKeybusInterface.h>
 #include "sia_map.h"
 
-static const char* AP_SSID = "ESP32-C3-Config";
-static const char* AP_PASS = "12345678";
+// AP SSID/Pass serán dinámicos en función del número de serie
+String AP_SSID = "";
+String AP_PASS = ""; // por defecto sin contraseña (configurable desde web)
 static const char* PREF_NAMESPACE = "sia_dc09";
 
 WebServer server(80);
 Preferences prefs;
 // PIN del LED integrado (ESP32-C3 Super Mini usa GPIO8)
 const uint8_t LED_PIN = 8;
+
+// PIN del botón de factory reset (activo bajo). Presionar 5s para reset de fábrica
+const uint8_t BUTTON_FACTORY_PIN = 9;
+const unsigned long FACTORY_RESET_MS = 5000;
+
+// Watchdog (segundos)
+const int WDT_TIMEOUT_SEC = 10;
+
+unsigned long buttonPressedSince = 0;
+bool buttonWasPressed = false;
 
 // Pines para dscKeybusInterface (evitar pines USB D+/D- en ESP32-C3)
 // Nota: GPIO19/GPIO20 suelen usarse para USB en algunas placas; no los usemos.
@@ -30,9 +42,10 @@ struct SiaConfig {
   String secondaryHost;
   uint16_t secondaryPort = 0;
   bool secondaryRedundant = false;
-  String account = "2510";
+  // por defecto vacío: el campo "account" debe quedar vacío en firmware de fábrica
+  String account = "";
   uint16_t seq = 1;
-  uint32_t keepaliveInterval = 300; // segundos entre keepalive, 0 = deshabilitado
+  uint32_t keepaliveInterval = 0; // segundos entre keepalive, 0 = deshabilitado (por defecto vacío)
 };
 
 SiaConfig config;
@@ -77,6 +90,23 @@ String defaultSiaTarget() {
   return config.secondaryRedundant ? String("all") : String("primary");
 }
 
+String deviceSerial() {
+  String m = WiFi.macAddress();
+  m.replace(":", "");
+  m.trim();
+  return m;
+}
+
+// Buscar descripción asociada a un código SIA en la tabla (primera coincidencia)
+String findDescriptionForSiaCode(const String& code) {
+  for (int i = 0; i < siaMapCount; ++i) {
+    if (String(siaMap[i].siaCode) == code) {
+      return String(siaMap[i].description);
+    }
+  }
+  return String("");
+}
+
 bool queueSiaEvent(const String& eventType, const String& partition, const String& address, const String& description) {
   pendingType = eventType;
   pendingPartition = partition.length() > 0 ? partition : String("1");
@@ -99,14 +129,14 @@ bool queueSiaEventByKey(const char* eventKey, const String& description) {
 String normalizeAccount(const String& input) {
   String s = input;
   s.trim();
-  if (s.length() == 0) return String("2510");
+  if (s.length() == 0) return String("");
   // aceptar hexa de 1-4 dígitos (0-FFFF) sin conversión
   s.toUpperCase();
-  if (s.length() > 4) return String("2510");
+  if (s.length() > 4) return String("");
   for (size_t i = 0; i < s.length(); ++i) {
     char c = s.charAt(i);
     if (!((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F'))) {
-      return String("2510");
+      return String("");
     }
   }
   // rellenar a 4 dígitos con ceros adelante
@@ -291,12 +321,9 @@ void loadConfig() {
   config.secondaryHost = prefs.getString("secondaryHost", "");
   config.secondaryPort = prefs.getUInt("secondaryPort", 0);
   config.secondaryRedundant = prefs.getBool("secondaryRedundant", false);
-  config.account = prefs.getString("account", "2510");
+  config.account = prefs.getString("account", "");
   config.seq = prefs.getUInt("seq", 1);
-  config.keepaliveInterval = prefs.getUInt("keepalive", 300);
-  if (config.account.length() == 0) {
-    config.account = "2510";
-  }
+  config.keepaliveInterval = prefs.getUInt("keepalive", 0);
   hasWifiCredentials = config.wifiSsid.length() > 0 && config.wifiPassword.length() > 0;
 }
 
@@ -305,8 +332,8 @@ void startAccessPoint() {
   WiFi.mode(WIFI_AP_STA);
   delay(100);
   // iniciar AP en modo simple (canal automático, máxima potencia)
-  Serial.printf("Llamando a softAP('%s', '%s')\n", AP_SSID, AP_PASS);
-  bool apOk = WiFi.softAP(AP_SSID, AP_PASS);
+  Serial.printf("Llamando a softAP('%s')\n", AP_SSID.c_str());
+  bool apOk = WiFi.softAP(AP_SSID.c_str(), AP_PASS.length() ? AP_PASS.c_str() : NULL);
   delay(500);
   if (apOk) {
     Serial.printf("✓ AP iniciado correctamente\n");
@@ -385,10 +412,10 @@ String htmlPage() {
       <option value="backup">Backup</option>
       <option value="redundant">Redundante</option>
     </select>
-    <label for="account">Número de cuenta (hexadecimal, ej: 2510, ABCD)</label>
-    <input id="account" placeholder="2510" />
-    <label for="keepalive">Keepalive (segundos, 0=deshabilitado)</label>
-    <input id="keepalive" placeholder="300" type="number" />
+    <label for="account">Número de cuenta (hexadecimal 1-4 dígitos, opcional)</label>
+    <input id="account" placeholder="(opcional)" />
+    <label for="keepalive">Keepalive (segundos, vacío o 0 = deshabilitado)</label>
+    <input id="keepalive" placeholder="" type="number" />
     <div id="accountHint" class="small" style="margin-top:6px;color:#555"></div>
     <button onclick="saveConfig()">Guardar configuración</button>
     <div id="saveResult" class="small"></div>
@@ -437,10 +464,10 @@ String htmlPage() {
 
     function normalizeAccountJS(input) {
       let s = (input||"").trim().toUpperCase();
-      if (s.length === 0) return '2510';
+      if (s.length === 0) return '';
       // aceptar hex 1-4 dígitos, rellenar a 4
-      if (s.length > 4) return '2510';
-      if (!/^[0-9A-F]+$/.test(s)) return '2510';
+      if (s.length > 4) return '';
+      if (!/^[0-9A-F]+$/.test(s)) return '';
       return s.padStart(4, '0');
     }
 
@@ -477,17 +504,25 @@ String htmlPage() {
         Modo secundario: <strong>${json.secondaryMode}</strong><br>
         Último envío: <strong>${json.lastSendStatus}</strong><br>
       `;
-      // solo actualizar campos si NO están siendo editados actualmente
-      const activeElem = document.activeElement;
-      if (activeElem.id !== 'ssid') document.getElementById('ssid').value = json.wifiSsid;
-      if (activeElem.id !== 'password') document.getElementById('password').value = json.wifiPassword;
-      if (activeElem.id !== 'primaryHost') document.getElementById('primaryHost').value = json.primaryHost;
-      if (activeElem.id !== 'primaryPort') document.getElementById('primaryPort').value = json.primaryPort;
-      if (activeElem.id !== 'secondaryHost') document.getElementById('secondaryHost').value = json.secondaryHost;
-      if (activeElem.id !== 'secondaryPort') document.getElementById('secondaryPort').value = json.secondaryPort;
-      if (activeElem.id !== 'secondaryMode') document.getElementById('secondaryMode').value = json.secondaryMode;
-      if (activeElem.id !== 'account') document.getElementById('account').value = json.account;
-      if (activeElem.id !== 'keepalive') document.getElementById('keepalive').value = json.keepalive;
+      // Sólo actualizar campos si están vacíos y no está el usuario enfocado en ellos
+      // Esto evita sobrescribir lo que el usuario está escribiendo antes de guardar.
+      const setIfEmpty = (id, value) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el === document.activeElement) return; // no tocar campo enfocado
+        if (el.value === null || String(el.value).trim().length === 0) {
+          el.value = value || '';
+        }
+      };
+      setIfEmpty('ssid', json.wifiSsid);
+      setIfEmpty('password', json.wifiPassword);
+      setIfEmpty('primaryHost', json.primaryHost);
+      setIfEmpty('primaryPort', json.primaryPort);
+      setIfEmpty('secondaryHost', json.secondaryHost);
+      setIfEmpty('secondaryPort', json.secondaryPort);
+      setIfEmpty('secondaryMode', json.secondaryMode);
+      setIfEmpty('account', json.account);
+      setIfEmpty('keepalive', json.keepalive);
     }
 
     async function saveConfig() {
@@ -508,7 +543,8 @@ String htmlPage() {
       body.append('secondaryPort', document.getElementById('secondaryPort').value);
       body.append('secondaryMode', document.getElementById('secondaryMode').value);
       body.append('account', normalized);
-      body.append('keepalive', document.getElementById('keepalive').value || '300');
+      // si el campo keepalive está vacío, enviamos vacío para deshabilitar
+      body.append('keepalive', document.getElementById('keepalive').value);
       const res = await fetch('/save', { method: 'POST', body });
       const json = await res.json();
       document.getElementById('saveResult').textContent = json.success ? 'Configuración guardada.' : 'Error guardando.';
@@ -552,10 +588,13 @@ String htmlPage() {
           row.appendChild(meta);
           container.appendChild(row);
         });
-        // también rellenar el select de tipos con código + descripción
+        // también rellenar el select de tipos con código + descripción (sin duplicados por código)
         const typeSelect = document.getElementById('eventType');
         typeSelect.innerHTML = '';
+        const seen = new Set();
         list.forEach(ev => {
+          if (seen.has(ev.code)) return; // evitar duplicados
+          seen.add(ev.code);
           const opt = document.createElement('option');
           opt.value = ev.code;
           opt.textContent = `${ev.code} - ${ev.desc}`;
@@ -662,27 +701,81 @@ void handleStatus() {
 }
 
 void handleSave() {
-  config.wifiSsid = server.arg("ssid");
-  config.wifiPassword = server.arg("password");
-  config.primaryHost = server.arg("primaryHost");
-  config.primaryPort = server.arg("primaryPort").toInt();
-  config.secondaryHost = server.arg("secondaryHost");
-  config.secondaryPort = server.arg("secondaryPort").toInt();
-  config.secondaryRedundant = server.arg("secondaryMode") == "redundant";
-  // normalizar la cuenta: hex 1-4 dígitos, rellenar a 4, sin conversión
-  config.account = normalizeAccount(server.arg("account"));
-  if (config.account.length() == 0) {
-    config.account = "2510";
+  // Leer parámetros crudos
+  String ssidStr = server.arg("ssid");
+  String passwordStr = server.arg("password");
+  String primaryHostStr = server.arg("primaryHost");
+  String primaryPortStr = server.arg("primaryPort");
+  String secondaryHostStr = server.arg("secondaryHost");
+  String secondaryPortStr = server.arg("secondaryPort");
+  bool secondaryModeRedundant = server.arg("secondaryMode") == "redundant";
+  String accountStr = server.arg("account");
+  String keepaliveStr = server.arg("keepalive");
+
+  // Validaciones básicas
+  if (ssidStr.length() > 32) { server.send(400, "application/json", "{\"success\":false,\"error\":\"SSID demasiado largo\"}"); return; }
+  if (passwordStr.length() > 64) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Contraseña demasiado larga\"}"); return; }
+  if (primaryHostStr.length() > 128 || primaryHostStr.indexOf(' ') >= 0) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Host primario inválido\"}"); return; }
+  if (secondaryHostStr.length() > 128 || secondaryHostStr.indexOf(' ') >= 0) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Host secundario inválido\"}"); return; }
+
+  auto isDigits = [&](const String &s)->bool { if (s.length() == 0) return false; for (size_t i=0;i<s.length();++i) if (!isDigit(s.charAt(i))) return false; return true; };
+
+  // primaryPort: si vacío -> default 3000, si no vacío validar números y rango
+  uint16_t primaryPortVal = 0;
+  if (primaryPortStr.length() == 0) {
+    primaryPortVal = 3000;
+  } else {
+    if (!isDigits(primaryPortStr)) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Puerto primario inválido\"}"); return; }
+    long v = primaryPortStr.toInt(); if (v < 1 || v > 65535) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Puerto primario fuera de rango\"}"); return; }
+    primaryPortVal = (uint16_t)v;
   }
-  if (config.primaryPort == 0) {
-    config.primaryPort = 3000;
+
+  uint16_t secondaryPortVal = 0;
+  if (secondaryPortStr.length() > 0) {
+    if (!isDigits(secondaryPortStr)) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Puerto secundario inválido\"}"); return; }
+    long v2 = secondaryPortStr.toInt(); if (v2 < 1 || v2 > 65535) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Puerto secundario fuera de rango\"}"); return; }
+    secondaryPortVal = (uint16_t)v2;
   }
-  // keepalive
-  config.keepaliveInterval = server.arg("keepalive").toInt();
+
+  // account: permitir vacío, si no vacío validar hex 1-4
+  String acctNorm = normalizeAccount(accountStr);
+  if (accountStr.length() > 0 && acctNorm.length() == 0) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Cuenta inválida (solo hex 1-4)\"}"); return; }
+
+  // keepalive: vacío -> 0 (deshabilitado). Si no vacío validar número 0..300
+  uint32_t keepVal = 0;
+  if (keepaliveStr.length() == 0) {
+    keepVal = 0;
+  } else {
+    if (!isDigits(keepaliveStr)) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Keepalive inválido\"}"); return; }
+    long kv = keepaliveStr.toInt(); if (kv < 0 || kv > 300) { server.send(400, "application/json", "{\"success\":false,\"error\":\"Keepalive fuera de rango (0-300)\"}"); return; }
+    keepVal = (uint32_t)kv;
+  }
+
+  // Asignar valores validados a la configuración
+  config.wifiSsid = ssidStr;
+  config.wifiPassword = passwordStr;
+  config.primaryHost = primaryHostStr;
+  config.primaryPort = primaryPortVal;
+  config.secondaryHost = secondaryHostStr;
+  config.secondaryPort = secondaryPortVal;
+  config.secondaryRedundant = secondaryModeRedundant;
+  config.account = acctNorm; // puede ser cadena vacía
+  config.keepaliveInterval = keepVal;
+  config.seq = prefs.getUInt("seq", config.seq);
   saveConfig();
   hasWifiCredentials = config.wifiSsid.length() > 0 && config.wifiPassword.length() > 0;
+  // Solo iniciar/forzar conexión STA si no está conectado o si cambió el SSID
   if (hasWifiCredentials) {
-    startStation();
+    bool needConnect = false;
+    if (WiFi.status() != WL_CONNECTED) {
+      needConnect = true;
+    } else {
+      String currentSsid = WiFi.SSID();
+      if (currentSsid != config.wifiSsid) {
+        needConnect = true;
+      }
+    }
+    if (needConnect) startStation();
   }
   lastSendStatus = "Configuración guardada";
   server.send(200, "application/json", "{\"success\":true}");
@@ -714,6 +807,11 @@ void handleSend() {
   if (pendingType.length() == 0) {
     pendingType = "BA";
   }
+  // Si no se proporcionó descripción, intentar obtenerla desde la tabla SIA
+  if (pendingDescription.length() == 0) {
+    String desc = findDescriptionForSiaCode(pendingType);
+    if (desc.length() > 0) pendingDescription = desc;
+  }
   sendQueued = true;
   lastSendStatus = "Evento en cola";
   server.send(200, "application/json", "{\"queued\":true}");
@@ -732,6 +830,11 @@ void handleControl() {
     pendingPartition = "1";
     pendingAddress = "002";
     pendingDescription = "Evento de prueba (control)";
+    // rellenar descripción desde tabla si está vacía
+    if (pendingDescription.length() == 0) {
+      String desc = findDescriptionForSiaCode(pendingType);
+      if (desc.length() > 0) pendingDescription = desc;
+    }
     pendingTarget = defaultSiaTarget();
     sendQueued = true;
     result = "Evento de prueba en cola";
@@ -1038,6 +1141,16 @@ void setup() {
   // configurar pin LED
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, HIGH); // por defecto apagado (no conectado)
+  // configurar botón factory reset
+  pinMode(BUTTON_FACTORY_PIN, INPUT_PULLUP);
+  // inicializar número de serie y punto de acceso por defecto
+  String sn = deviceSerial();
+  AP_SSID = String("SMARTHOME_") + sn;
+  AP_PASS = String(""); // red abierta por defecto (configurable en web)
+  Serial.printf("Device serial: %s\n", sn.c_str());
+  // inicializar watchdog de tarea
+  esp_task_wdt_init(WDT_TIMEOUT_SEC, true);
+  esp_task_wdt_add(NULL);
   // iniciar DSC Keybus Interface para leer eventos de alarma
   dsc.begin(Serial);
   // enviar evento de arranque si está mapeado y habilitado
@@ -1211,9 +1324,29 @@ void loop() {
       }
     }
   }
+  // manejo botón factory reset (presionar 5s para reset de fábrica)
+  bool buttonPressed = (digitalRead(BUTTON_FACTORY_PIN) == LOW);
+  if (buttonPressed) {
+    if (!buttonWasPressed) {
+      buttonWasPressed = true;
+      buttonPressedSince = millis();
+    } else {
+      if (millis() - buttonPressedSince >= FACTORY_RESET_MS) {
+        Serial.println("Factory reset accionado: limpiando preferencias y reiniciando...");
+        prefs.clear();
+        delay(200);
+        ESP.restart();
+      }
+    }
+  } else {
+    buttonWasPressed = false;
+    buttonPressedSince = 0;
+  }
   server.handleClient();
   handleWifi();
   handleSendQueue();
+  // reset watchdog
+  esp_task_wdt_reset();
   if (millis() - lastStatusPrint > 15000) {
     lastStatusPrint = millis();
     uint8_t clients = WiFi.softAPgetStationNum();
